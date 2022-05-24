@@ -23,25 +23,29 @@ input.onButtonPressed(Button.A, function () {
     if (!(run)) {
         run = true
         curnt = 0
+        display_pic(0)
         while (true) {
-            if (input.buttonIsPressed(Button.A)) {
-                curnt = (curnt + 1) % cnt
-                display_pic(curnt)
+            if (input.buttonIsPressed(Button.AB)) {
+                basic.showIcon(IconNames.Yes)
+                break;
             } else if (input.buttonIsPressed(Button.B)) {
                 curnt = curnt - 1
                 if (curnt < 0) {
                     curnt += cnt
                 }
                 display_pic(curnt)
-            } else if (input.pinIsPressed(TouchPin.P0) || (input.pinIsPressed(TouchPin.P1) || input.pinIsPressed(TouchPin.P2))) {
-                basic.clearScreen()
-                break;
+            } else if (input.buttonIsPressed(Button.A)) {
+                curnt = (curnt + 1) % cnt
+                display_pic(curnt)
             }
         }
+        basic.clearScreen()
     }
 })
 let curnt = 0
-let run = false
 let cnt = 0
+let run = false
+run = true
 cnt = 2
 basic.showString("hello!")
+run = false
